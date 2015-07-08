@@ -35,5 +35,13 @@
   <%= @restaurant.phone %>
 </p>
 
+<img src = "https://maps.googleapis.com/maps/api/staticmap?
+  center=<%="#{@restaurant.address}, #{@restaurant.city}, #{@restaurant.state}, #{@restaurant.zipcode}"%>
+  &size=400x400
+  &zoom=16
+  &markers=color:red| <%="#{@restaurant.address}, #{@restaurant.city}, #{@restaurant.state}, #{@restaurant.zipcode}"%>">
+
+<br />
+<br />
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
