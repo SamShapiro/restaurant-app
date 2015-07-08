@@ -1,4 +1,0 @@
-c:/Ruby21/bin/ruby.exe extconf.rb
-c:/Ruby21/bin/ruby.exe: invalid switch in RUBYOPT: -S (RuntimeError)
-
-extconf failed, exit code 1
