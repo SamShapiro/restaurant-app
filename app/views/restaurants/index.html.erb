@@ -1,27 +1,44 @@
-<h1>Restaurant Listing</h1>
+<body>
+<h1 align="center">Restaurant Listing</h1>
 
-<table>
+
+<table table align="center">
+	<div align="center">
+		<p align="center">
+			<%=button_to "New Restaurant", new_restaurant_path, :method => "get" %>
+		</p>
+	</div>
 	<thread>
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
-			<th colspan="3"></th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Zip Code</th>
+			<th>Phone</th>
+			<th colspan="10"></th>
 		</tr>
 	</thread>
 
 	<tbody>
+		
+
 		<% @restaurants.each do |restaurant| %>
 			<tr>
-				<td><%= restaurant.name %></td>
-				<td><%= restaurant.description %></td>
-				<td><%= link_to 'Show', restaurant %></td>
-				<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-				<td><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<td align="center"><%= restaurant.name %></td>
+				<td align="center"><%= restaurant.description %></td>
+				<td align="center"><%= restaurant.address %></td>
+				<td align="center"><%= restaurant.city %></td>
+				<td align="center"><%= restaurant.state %></td>
+				<td align="center"><%= restaurant.zipcode %></td>
+				<td align="center"><%= restaurant.phone %></td>
+				<td align="center"><%= link_to 'Show', restaurant %></td>
+				<td align="center"><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+				<td align="center"><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<br>
-
-<%= link_to "New Restaurant", new_restaurant_path %>
+</body>
