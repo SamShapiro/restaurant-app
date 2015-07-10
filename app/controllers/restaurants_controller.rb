@@ -64,6 +64,6 @@ class RestaurantsController < ApplicationController
 		end
 		
 		def check_password
-			params.require(:restaurant)[:password] == 'password'
+			params.require(:restaurant)[:password] == ENV['PASSWORD']
 		end
 end
