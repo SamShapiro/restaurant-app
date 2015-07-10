@@ -17,8 +17,12 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = Restaurant.new(restaurant_params)
-
+		if check_password
+			@restaurant = Restaurant.new(restaurant_params)
+		else
+			raise 'Password is incorrect.'
+			redirect_to new_restaurant_path
+		end
 		respond_to do |format|
 			if @restaurant.save
 				format.html {redirect_to @restaurant, notice: 'Restaurant was succesfully created.'}
@@ -57,5 +61,9 @@ class RestaurantsController < ApplicationController
 
 		def restaurant_params
 			params.require(:restaurant).permit(:id, :name, :address, :description, :city, :state, :zipcode, :phone)
+		end
+		
+		def check_password
+			params.require(:restaurant)[:password] == ENV['PASSWORD']
 		end
 end

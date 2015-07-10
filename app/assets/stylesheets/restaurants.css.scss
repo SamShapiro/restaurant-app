@@ -3,12 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-table, td {
+table {
     border-left: 1px solid black;
     border-collapse: collapse;
 }
 
 td {
+    border-left: 1px solid black;
     width: 150px;
     padding: 5px;
 }
