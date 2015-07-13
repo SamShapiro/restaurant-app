@@ -35,6 +35,7 @@ class RestaurantsController < ApplicationController
 
 	def update
 		respond_to do |format|
+			if @restaurant.save
 				format.html {redirect_to @restaurant, notice: 'Restaurant was succesfully updated.'}
 				format.json {render :show, status: :ok, location: @restaurant}
 			else
