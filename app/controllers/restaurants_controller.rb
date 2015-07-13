@@ -20,7 +20,6 @@ class RestaurantsController < ApplicationController
 		if check_password
 			@restaurant = Restaurant.new(restaurant_params)
 		else
-			raise 'Password is incorrect.'
 			redirect_to new_restaurant_path
 		end
 		respond_to do |format|
@@ -36,7 +35,6 @@ class RestaurantsController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if @restaurant.update(restaurant_params)
 				format.html {redirect_to @restaurant, notice: 'Restaurant was succesfully updated.'}
 				format.json {render :show, status: :ok, location: @restaurant}
 			else
