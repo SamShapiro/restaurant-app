@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 	
-	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+	before_action :set_restaurant, only: [:show]
+	before_action :set_restaurant_with_user, only: [:edit, :update, :destroy]
 	before_filter :authenticate_user!, except: [:index, :show]
 
 	def index
@@ -53,6 +54,10 @@ class RestaurantsController < ApplicationController
 	private 
 		def set_restaurant
 			@restaurant = Restaurant.find(params[:id])
+		end
+		
+		def set_restaurant_with_user
+			@restaurant = current_user.restaurants.find(params[:id])
 		end
 
 		def restaurant_params
