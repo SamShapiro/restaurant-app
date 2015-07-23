@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :username, :email
   validates_uniqueness_of :username, :email
+  has_many :restaurants
 end

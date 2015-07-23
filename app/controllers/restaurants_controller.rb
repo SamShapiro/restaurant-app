@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 	
 	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+	before_filter :authenticate_user!, except: [:index, :show]
 
 	def index
 		@restaurants = Restaurant.all
@@ -17,11 +18,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		if check_password
-			@restaurant = Restaurant.new(restaurant_params)
-		else
-			redirect_to new_restaurant_path
-		end
+		@restaurant = current_user.restaurants.build(restaurant_params)
 		respond_to do |format|
 			if @restaurant.save
 				format.html {redirect_to @restaurant, notice: 'Restaurant was succesfully created.'}
@@ -60,13 +57,5 @@ class RestaurantsController < ApplicationController
 
 		def restaurant_params
 			params.require(:restaurant).permit(:id, :name, :address, :description, :city, :state, :zipcode, :phone)
-		end
-		
-		def check_password
-			unless ENV['ISHEROKU'] == nil
-				params.require(:restaurant)[:password] == ENV['PASSWORD']
-			else
-				true
-			end
 		end
 end
